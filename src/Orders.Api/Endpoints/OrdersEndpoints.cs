@@ -87,6 +87,48 @@ public static class OrdersEndpoints
 
             return Results.Ok(ToDetail(order));
         });
+
+        // TICKET-101
+        g.MapPost("/{id:guid}/cancel", async (
+            Guid id,
+            CancelRequest req,
+            OrdersDbContext db,
+            IPaymentService payments,
+            ILoggerFactory lf,
+            CancellationToken ct) =>
+        {
+            var log = lf.CreateLogger("Cancel");
+
+            var order = await db.Orders
+                .Include(o => o.Customer)
+                .Include(o => o.Lines)
+                .FirstOrDefaultAsync(o => o.Id == id, ct);
+
+            if (order is null)
+            {
+                return Results.NotFound();
+            }
+
+            if (order.Status == OrderStatus.Shipped)
+            {
+                return Results.Conflict(new { error = "already shipped" });
+            }
+
+            if (order.PlacedUtc.DateTime < DateTime.Now.AddDays(-14))
+            {
+                return Results.Conflict(new { error = "outside window" });
+            }
+
+            await payments.QueueRefundAsync(order.Id, order.TotalAmount, ct);
+
+            order.Status = OrderStatus.Cancelled;
+            await db.SaveChangesAsync(ct);
+
+            log.LogInformation("Cancelled {Order} for {Customer} <{Email}>",
+                order.Reference, order.Customer!.FullName, order.Customer.Email);
+
+            return Results.Ok(ToDetail(order));
+        });
     }
 
     internal static OrderDetailDto ToDetail(Order o) => new(
