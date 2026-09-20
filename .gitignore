@@ -1,0 +1,10 @@
+bin/
+obj/
+*.user
+*.db
+*.db-shm
+*.db-wal
+.vs/
+.idea/
+.claude/settings.local.json
+.claude/worktrees/

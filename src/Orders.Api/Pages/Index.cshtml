@@ -1,0 +1,47 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Orders";
+}
+<h1>Orders</h1>
+
+<form method="get" class="filter">
+    <label for="status">Status</label>
+    <select id="status" name="status" onchange="this.form.submit()">
+        <option value="">All</option>
+        @foreach (var s in Model.StatusOptions)
+        {
+            if (s == Model.Status)
+            {
+                <option value="@s" selected>@s</option>
+            }
+            else
+            {
+                <option value="@s">@s</option>
+            }
+        }
+    </select>
+    <span class="count">@Model.Orders.Count shown</span>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>Order</th><th>Customer</th><th>Placed</th><th>Age</th><th>Status</th><th class="num">Total</th><th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var o in Model.Orders)
+    {
+        <tr>
+            <td class="mono">@o.Reference</td>
+            <td class="mono">@(o.Customer?.Reference)</td>
+            <td>@o.PlacedUtc.UtcDateTime.ToString("dd MMM yyyy")</td>
+            <td>@Model.AgeInDays(o) days</td>
+            <td><span class="status s-@o.Status.ToString().ToLowerInvariant()">@o.Status</span></td>
+            <td class="num">@o.TotalAmount.ToString("N2")</td>
+            <td><a href="/Order/@o.Id">View</a></td>
+        </tr>
+    }
+    </tbody>
+</table>
