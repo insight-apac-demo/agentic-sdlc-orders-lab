@@ -13,6 +13,11 @@ else
     <p class="crumb"><a href="/">Orders</a> / @Model.Order.Reference</p>
     <h1>@Model.Order.Reference</h1>
 
+    @if (Model.Message is not null)
+    {
+        <p class="notice">@Model.Message</p>
+    }
+
     <dl class="meta">
         <dt>Customer</dt><dd class="mono">@(Model.Order.Customer?.Reference) &middot; @(Model.Order.Customer?.FullName)</dd>
         <dt>Placed</dt><dd>@Model.Order.PlacedUtc.UtcDateTime.ToString("dd MMM yyyy HH:mm") UTC (@Model.AgeInDays days ago)</dd>
@@ -37,7 +42,21 @@ else
     </table>
 
     <div class="actions">
-        <button type="button" disabled title="Not implemented - see tickets/TICKET-101.md">Cancel order</button>
-        <span class="hint">Cancellation is not built yet. TICKET-101.</span>
+        @if (Model.CanCancel)
+        {
+            <form method="post">
+                <input type="hidden" name="id" value="@Model.Order.Id" />
+                <label class="reason">
+                    Reason
+                    <input type="text" name="reason" value="Customer changed their mind" />
+                </label>
+                <button type="submit">Cancel order</button>
+            </form>
+        }
+        else
+        {
+            <button type="button" disabled title="@Model.WhyNot">Cancel order</button>
+            <span class="hint">@Model.WhyNot</span>
+        }
     </div>
 }

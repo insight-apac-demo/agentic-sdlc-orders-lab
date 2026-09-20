@@ -87,6 +87,31 @@ public static class OrdersEndpoints
 
             return Results.Ok(ToDetail(order));
         });
+
+        // TICKET-101, spec docs/spec/cancel-order.md
+        g.MapPost("/{id:guid}/cancel", async (
+            Guid id,
+            CancelRequest req,
+            IOrdersService svc,
+            CancellationToken ct) =>
+        {
+            if (string.IsNullOrWhiteSpace(req.Actor))
+            {
+                return Results.BadRequest(new { error = "Actor is required." });
+            }
+
+            var result = await svc.CancelAsync(id, req.Actor, req.Reason ?? "", ct);
+
+            return result.Outcome switch
+            {
+                CancelOutcome.NotFound => Results.NotFound(),
+                CancelOutcome.NotCancellable =>
+                    Results.Conflict(new { error = "Order is not in a cancellable state." }),
+                CancelOutcome.OutsideWindow =>
+                    Results.Conflict(new { error = "Order is outside the 14 day cancellation window." }),
+                _ => Results.Ok(ToDetail((await svc.GetAsync(id, ct))!))
+            };
+        });
     }
 
     internal static OrderDetailDto ToDetail(Order o) => new(

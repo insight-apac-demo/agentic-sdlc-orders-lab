@@ -14,6 +14,7 @@ public sealed class TestHost : IDisposable
     public SqliteConnection Connection { get; }
     public OrdersDbContext Db { get; }
     public FakeTimeProvider Clock { get; }
+    public RecordingPaymentService Payments { get; }
     public OrdersService Service { get; }
 
     public TestHost(DateTimeOffset? now = null)
@@ -30,7 +31,8 @@ public sealed class TestHost : IDisposable
         Db.Database.EnsureCreated();
         SeedData.Ensure(Db, Clock.GetUtcNow());
 
-        Service = new OrdersService(Db, Clock, NullLogger<OrdersService>.Instance);
+        Payments = new RecordingPaymentService();
+        Service = new OrdersService(Db, Clock, Payments, NullLogger<OrdersService>.Instance);
     }
 
     public void Dispose()
@@ -46,4 +48,15 @@ public sealed class FakeTimeProvider : TimeProvider
     public FakeTimeProvider(DateTimeOffset now) => _now = now;
     public override DateTimeOffset GetUtcNow() => _now;
     public void Advance(TimeSpan by) => _now = _now.Add(by);
+}
+
+public sealed class RecordingPaymentService : IPaymentService
+{
+    public List<(Guid OrderId, decimal Amount)> Refunds { get; } = new();
+
+    public Task<string> QueueRefundAsync(Guid orderId, decimal amount, CancellationToken ct = default)
+    {
+        Refunds.Add((orderId, amount));
+        return Task.FromResult("RF-TEST-" + Refunds.Count);
+    }
 }

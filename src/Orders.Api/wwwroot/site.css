@@ -29,3 +29,7 @@ button { font:inherit; padding:7px 16px; border:1px solid var(--line); backgroun
 button:disabled { color:#a0a0a0; }
 .hint { color:var(--muted); font-size:13px; }
 footer { padding:16px 24px; border-top:1px solid var(--line); color:var(--muted); font-size:12px; margin-top:40px; }
+.notice { background:#f2f7ff; border:1px solid #cfe0f7; padding:10px 12px; border-radius:2px; font-size:14px; }
+.actions form { display:flex; align-items:center; gap:10px; }
+.reason { display:flex; align-items:center; gap:6px; font-size:13px; color:var(--muted); }
+.reason input { font:inherit; padding:6px 8px; border:1px solid var(--line); border-radius:2px; width:260px; }
