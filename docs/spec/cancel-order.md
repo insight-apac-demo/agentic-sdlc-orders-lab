@@ -1,4 +1,7 @@
-# Spec: Cancel an order within fourteen days
+# Spec: Let a customer cancel their own order
+
+> **Not ready to build from.** Q1 in `docs/brief/cancel-order-brief.md` is unanswered, and the criteria marked `[ASSUMED]`
+> below depend on it. See *Still blocked* at the end.
 
 **Traces to:** TICKET-101, and the brief in `docs/brief/cancel-order-brief.md`
 
@@ -15,10 +18,11 @@ than fourteen days ago, and the refund is queued automatically.
 ## Acceptance
 
 1. `POST /api/orders/{id}/cancel` returns 200 and the updated order when the order is in
-   Placed and was placed less than fourteen days ago.
+   Placed and was placed less than fourteen days ago.  **[ASSUMED - see Q1]**
 2. Returns 409 when the order is not in Placed. Shipped, Delivered and already Cancelled
    orders are all refused.
 3. Returns 409 when the order was placed fourteen days ago or more, measured in UTC.
+   **[ASSUMED - see Q1]**
 4. Returns 404 when no order with that id exists.
 5. A refund for the full order total is queued through `IPaymentService`. The payment
    provider is never called directly.
@@ -38,10 +42,30 @@ than fourteen days ago, and the refund is queued automatically.
 
 ## Open questions
 
+Carried from the brief. The answers live there, not here.
+
 1. **[DECISION NEEDED]** Fourteen days from placement, or any time before dispatch?
-   Written against fourteen days. Owner: Operations.
-2. **[DECISION NEEDED]** Refund synchronous or queued? Written as queued.
+   Owner: Operations. **Criteria 1 and 3 assume fourteen days and change if this does.**
+2. **[DECISION NEEDED]** Refund synchronous or queued? Owner: Finance. Criterion 5
+   assumes queued.
 3. **[DECISION NEEDED]** Email only, or email and SMS? Out of scope either way for now.
+
+## Assumptions
+
+Neither of these was asked in the brief; both had to be settled to write a criterion.
+
+- The boundary is exact and exclusive: an order placed exactly fourteen days ago is
+  refused, not allowed. Nothing in the inputs says which way the boundary falls.
+- "Placed" means the order's own status, not the absence of a dispatch record.
+
+## Still blocked
+
+**Q1 is unanswered, and criteria 1 and 3 depend on it.** This specification is not ready
+to build from. Answer Q1 in `docs/brief/cancel-order-brief.md` and run the spec-writer
+again; the `[ASSUMED]` markers come off and the question moves to Decisions taken.
+
+Q2 is unanswered but not blocking - criterion 5 is written against queued, and a
+synchronous refund would change the confirmation wording rather than the criterion.
 
 ## Notes for whoever builds this
 

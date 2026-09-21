@@ -4,6 +4,33 @@
 **Owner:** Delivery
 **Date:** written live in Session 1
 
+## Questions for you
+
+Answer these in this file. **This block is the only part of it edited by hand.** Each
+question is answerable without reading the rest of the brief.
+
+- **Is the cancellation window fourteen days from placement, or any time before the
+  order is dispatched?** Operations and Finance both say fourteen days from placement.
+  Customer Service say the rule customers actually want is any time before it ships, and
+  that nobody has ever complained about the fourteen day limit. The stand-up parked this
+  with an action to read the published policy; that action was never closed.
+  Owner: Operations, with the published policy in hand. *Written on: fourteen days.*
+  - Answer:
+
+- **Is the refund raised synchronously in the request, or queued?** Finance have no
+  preference, but note it changes what the confirmation screen must say - a queued refund
+  may take up to three working days. Owner: Finance. *Written on: queued.*
+  - Answer:
+
+- **Can an agent cancel on a customer's behalf, or only the customer?** Asked in the
+  Wednesday stand-up and never answered; the recording ends on "let me come back to you
+  on that one". Owner: Customer Service. *Written on: the customer only.*
+  - Answer:
+
+Nothing else in this file is hand-edited. If an answer contradicts what is written below,
+the analyst is run again rather than the prose patched, so the brief always matches its
+sources.
+
 ## The problem
 
 Customer service handles roughly 200 cancellation requests a day by hand. Each one is a
@@ -48,18 +75,15 @@ than resolved here.
 - Agent-initiated cancellation on a customer's behalf. Raised in stand-up; Operations
   were to come back and did not.
 
-## Open questions
+## Sources read
 
-1. **[DECISION NEEDED] Which rule governs the window** - fourteen days from placement, or
-   any time before dispatch? Owner: Operations, with the published policy in hand.
-2. **[DECISION NEEDED] Refund timing** - synchronous in the request, or queued? Finance
-   have no preference but note it changes what the confirmation screen must say. Queued
-   may take up to three working days.
-3. **[DECISION NEEDED] Notification channel** - email only, or email and SMS? Customer
-   Service consider email the minimum. SMS cost is unknown and nobody owns it.
+Six inputs in `docs/inputs/`: the sponsor's one-line ask, three emails (Operations,
+Finance, Customer Service), a partial stand-up transcript where the recording started
+late, and the orders schema.
 
-## Assumption made in order to proceed
+**Three sources, three conflicts, three open questions.** The conflicts and the questions
+are in the block at the top of this file, because that is where a person can answer them.
 
-The specification below is written against the fourteen day rule, because it is the
-published policy as understood by two of the three sources. If question 1 resolves the
-other way, the acceptance criteria change and this brief must be revised.
+Notification channel - email only, or email and SMS - was raised by Customer Service and
+is parked above under what is not in this piece of work, rather than asked as a question:
+nothing downstream depends on it, and SMS cost is unowned.
