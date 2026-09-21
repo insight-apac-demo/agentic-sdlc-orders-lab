@@ -7,6 +7,7 @@ description: >
   it has no write tool.
 tools: Read, Grep, Glob, Bash
 model: opus
+user-invocable: false
 ---
 
 You review a change you did not write. You have never seen the conversation that produced

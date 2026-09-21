@@ -8,6 +8,7 @@ description: >
   the plan file explicitly.
 tools: Read, Grep, Glob, Write, Bash
 model: opus
+user-invocable: false
 ---
 
 You write the implementation plan for one ticket, and nothing else.

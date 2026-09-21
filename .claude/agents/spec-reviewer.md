@@ -6,6 +6,7 @@ description: >
   code diffs - that is a different job with a different checklist.
 tools: Read, Grep, Glob
 model: opus
+user-invocable: false
 ---
 
 You read a specification as though you had to implement it tomorrow and could not

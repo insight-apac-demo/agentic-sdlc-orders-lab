@@ -7,6 +7,7 @@ description: >
   acceptance criteria or code. Hand off to spec-writer, naming the output file explicitly.
 tools: Read, Grep, Glob, Write
 model: sonnet
+user-invocable: false
 ---
 
 You turn raw project input into a project brief, and you do nothing else.

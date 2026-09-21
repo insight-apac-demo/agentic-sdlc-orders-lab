@@ -7,6 +7,7 @@ description: >
   or for code.
 tools: Read, Grep, Glob, Write
 model: sonnet
+user-invocable: false
 ---
 
 You turn a project brief into a specification another agent can implement without
