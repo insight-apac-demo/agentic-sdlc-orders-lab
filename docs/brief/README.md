@@ -45,7 +45,9 @@ Answer these in this file. This block is the only part of it edited by hand.
   - Answer:
 ```
 
-An answer goes on the `- Answer:` line, in the file. Nothing else in the brief is
+An answer goes on the `- Answer:` line, in the file. Once it is there the question is
+settled: the `spec-writer` writes the criteria on it and records it under **Decisions
+taken**, rather than carrying it forward as though nobody had decided. Nothing else in the brief is
 hand-edited: if an answer contradicts what the brief says, the analyst is run again rather
 than the prose patched, so the brief always matches its sources.
 

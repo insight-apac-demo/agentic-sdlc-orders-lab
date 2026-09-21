@@ -5,7 +5,7 @@ argument-hint: point me at the inputs, e.g. docs/inputs/
 handoffs:
   - label: Write the specification
     agent: spec-writer
-    prompt: Read the brief at docs/brief/cancel-order-brief.md, in full including the disagreements, and turn it into a specification at docs/spec/cancel-order.md, following docs/spec/README.md. Leave the open questions open.
+    prompt: Read the brief at docs/brief/cancel-order-brief.md, in full including the disagreements, and turn it into a specification at docs/spec/cancel-order.md, following docs/spec/README.md. Questions the brief has answers for are settled - record them under Decisions taken. Only a question whose answer line is still blank stays open.
     send: false
 ---
 

@@ -56,8 +56,23 @@ footnote - it is the behaviour the system will have, and it will be built, teste
 shipped while the question sits open at the bottom of the file. That is why the marker goes
 on the criterion and not only in a list at the end.
 
-When every answer is filled in, you are run again. Use the answers, drop the `[ASSUMED]`
-markers they resolve, and move the questions into **Decisions taken**, each with its answer.
+## An answered question is not an open question
+
+**The block will often arrive with answers already in it.** That is the normal case and the
+whole reason it exists: a human read it and decided. Do not treat a filled-in answer as
+something still to be protected from resolution - the instruction not to close an open
+question means do not close it *yourself*, not ignore the person who did.
+
+For each question that has an answer: treat it as settled, write the criteria on it, use no
+`[ASSUMED]` marker for it, and record it under **Decisions taken** with the answer and who
+gave it. Only a blank `- Answer:` line is still open.
+
+If every question is answered, the specification has no `[ASSUMED]` markers and is ready to
+build from. Say so.
+
+If answers arrive after you have already written the specification, you are run again: use
+them, drop the `[ASSUMED]` markers they resolve, and move those questions into **Decisions
+taken**.
 
 Where you must assume something the brief did not raise at all, write it in the
 **Assumptions** section, as an assumption, not as a requirement - and say in your closing

@@ -58,6 +58,9 @@ anything, or you will report the honesty as a defect and miss the dishonesty.
   silently. Name the question and say which criteria depend on it.
 - A criterion whose behaviour differs from the assumption the brief states under
   *Written on:* is a finding. The two documents have drifted.
+- A question the brief has **answered**, still carried in the specification as
+  `[DECISION NEEDED]` or `[ASSUMED]`, is a finding. Somebody decided, and the specification
+  ignored them - which reads to an implementer exactly like a decision nobody has made.
 - A specification titled after an assumption - "Cancel an order within fourteen days" when
   the window is still Q1 - commits to one side of an open question in the first line
   anybody reads. That is a finding too.
