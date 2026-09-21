@@ -53,8 +53,16 @@ answered, that is an open question with an owner, not an omission to tidy up.
 1. `docs/inputs/README.md` - what the material is and where it came from.
 2. Every file in `docs/inputs/`, in full. Not a sample. The contradiction you are looking
    for will not be in the first two.
-3. The ticket in `tickets/`, **last**. Read it after the inputs, not before: read it first
-   and you will anchor on its framing and read the inputs looking for confirmation.
+3. **The one ticket you were given**, in `tickets/`, **last**. Read it after the inputs,
+   not before: read it first and you will anchor on its framing and read the inputs
+   looking for confirmation.
+
+   If you were not told which ticket, work out which one the inputs are about and **say
+   which you picked and why** in the brief. Do not read the rest of the backlog looking
+   for related work: `tickets/` holds seven unrelated tickets, several of them adjacent
+   enough to look relevant - `TICKET-106`, bulk-cancelling stale orders, is not the same
+   piece of work as a customer cancelling their own. Pulling a neighbour in widens the
+   specification, and nobody asked for it.
 
 ## What the brief must contain
 
