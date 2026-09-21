@@ -5,7 +5,7 @@ argument-hint: point me at the inputs, e.g. docs/inputs/
 handoffs:
   - label: Write the specification
     agent: spec-writer
-    prompt: Turn the brief you just produced into a specification, following docs/spec/README.md. Leave the open questions open.
+    prompt: Turn the brief you just produced into a specification at docs/spec/cancel-order.md, following docs/spec/README.md. Leave the open questions open.
     send: false
 ---
 

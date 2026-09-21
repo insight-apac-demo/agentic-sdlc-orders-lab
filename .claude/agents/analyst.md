@@ -4,7 +4,7 @@ description: >
   Turns the raw, contradictory material a project actually arrives with into a project
   brief. Records where sources disagree rather than resolving it. Use at the start of
   Definition, before any specification exists. Do not use for writing requirements,
-  acceptance criteria or code.
+  acceptance criteria or code. Hand off to spec-writer, naming the output file explicitly.
 tools: Read, Grep, Glob, Write
 model: sonnet
 ---
