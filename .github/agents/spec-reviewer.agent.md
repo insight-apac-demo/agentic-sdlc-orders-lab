@@ -5,7 +5,7 @@ argument-hint: point me at a spec in docs/spec/
 handoffs:
   - label: Close the gaps
     agent: spec-writer
-    prompt: Address the gaps listed above. Do not resolve anything marked [DECISION NEEDED].
+    prompt: Address the gaps raised in the review above against docs/spec/cancel-order.md. Do not resolve anything marked [DECISION NEEDED].
     send: false
 ---
 
