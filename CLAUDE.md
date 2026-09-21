@@ -29,10 +29,15 @@ standards - not as though it has been listening.
 
 ## Agents
 
-`.claude/agents/` holds three Definition-phase subagents - `analyst`, `spec-writer` and
-`spec-reviewer` - mirroring the Copilot definitions in `.github/agents/`. The
-`spec-reviewer` is given no write tool on purpose: "reports only, never edits" is enforced
-there rather than merely instructed.
+`.claude/agents/` holds five subagents mirroring the Copilot definitions in
+`.github/agents/`. Definition: `analyst`, `spec-writer`, `spec-reviewer`. Realisation:
+`planner`, `reviewer`.
+
+`spec-reviewer` and `reviewer` are given no write tool on purpose: "reports only, never
+edits" is enforced there rather than merely instructed.
 
 The Copilot mirrors leave tools unset so they run on any tier. That difference is itself
-worth noticing - the same three agents, one set with a gate and one set on its honour.
+worth noticing - the same five agents, one set with a gate and one set on its honour.
+
+They carry `user-invocable: false` so they do not appear twice in the VS Code agent picker
+alongside the Copilot copies. Claude Code still loads them.

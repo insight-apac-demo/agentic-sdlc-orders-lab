@@ -53,7 +53,7 @@ Session 3 maps the two formats to each other.
 
 The Claude Code definitions carry `tools`, and the Spec Reviewer has no write tool at all -
 so "reports only, never edits" is enforced rather than requested. That is deliberate, and it
-is what Session 6 teaches with its `security-reviewer` example.
+is what Session 5 teaches when it puts permissions and hooks around an agent.
 
 The Copilot definitions deliberately leave `tools` unset, so they run on any tier without a
 tool-name mismatch. **Every boundary in those three is an instruction, not a gate** - and

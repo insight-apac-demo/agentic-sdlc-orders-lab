@@ -27,7 +27,11 @@ The code is not the specification and neither is this file. Both point elsewhere
 | What "done" means | `docs/spec/<slug>.md` | Criterion number, e.g. `cancel-order §4` |
 | Why it is wanted at all | `docs/brief/<slug>-brief.md` | Section name |
 | The raw material the brief came from | `docs/inputs/` | Filename |
-| The house shape for a specification | `docs/spec/README.md` | - |
+| How a change will be built | `docs/plans/<slug>.md` | Section name |
+| The house shape for each of those | `docs/{brief,spec,plans}/README.md` | - |
+
+Paths in this file below `src/Orders.Api` are written relative to it -
+`Services/PricingHelper.cs` means `src/Orders.Api/Services/PricingHelper.cs`.
 
 **A ticket is not a specification.** TICKET-101 is deliberately underspecified - it is the
 input to the Definition stage, not an instruction to start coding. If `docs/spec/` has no
@@ -83,19 +87,27 @@ rebuilt in about two seconds. Reset between demo runs rather than hand-editing r
 
 ## 4. How to work a ticket
 
-1. **Read the ticket, then the specification.** If there is no specification, write one
-   first - `docs/spec/README.md` has the shape. The `analyst` and `spec-writer` agents in
-   `.github/agents/` exist for exactly this.
-2. **Plan before you edit.** Name the files you intend to change and why. A plan that does
-   not name files has not been thought through, and the plan is the cheapest place to catch
-   a misunderstanding - by about two orders of magnitude.
+1. **Read the ticket, then the specification, then the plan.** If there is no
+   specification, write one first - `docs/spec/README.md` has the shape. The five agents in
+   `.github/agents/` cover this end to end: `analyst` and `spec-writer` produce the
+   specification, `spec-reviewer` challenges it, `planner` turns it into a plan and
+   `reviewer` checks the finished change against it.
+2. **Plan before you edit, and write the plan down.** If `docs/plans/` already has a file
+   for this work, that plan governs - read it, build what it says, and raise a finding
+   rather than quietly diverging from it. If there is none, the `planner` agent writes one;
+   failing that, write the plan yourself before touching a file. Either way it names the
+   files you intend to change and why. A plan that does not name files has not been thought
+   through, and the plan is the cheapest place to catch a misunderstanding - by about two
+   orders of magnitude.
 3. **Write the tests from the acceptance criteria**, one test per criterion, before
    implementing. The criteria are the specification; the test is its executable form.
 4. **Implement** until they pass.
 5. **Self-review the diff against the specification**, not against the codebase. Those are
    different questions. "Does this look like our code?" is not "does this do what we said?"
 6. **State what you assumed.** Anything you had to guess is `[DECISION NEEDED]`, in the
-   plan, named - not quietly resolved.
+   plan, named - not quietly resolved. A criterion already marked `[ASSUMED - see Qn]` was
+   written on an assumption somebody has recorded: build it that way, and do not
+   substitute your own.
 
 **Complete only the requested task.** Adjacent improvements are recommendations, logged
 separately. The helpful rewrite of three files nobody asked about is the most common way an

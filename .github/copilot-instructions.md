@@ -77,5 +77,7 @@ rather than choosing silently.
 
 ## Agents
 
-`.github/agents/` holds three Definition-phase agents - Analyst, Spec Writer, Spec Reviewer.
-Each is forbidden from doing the next one's job. See `.github/agents/README.md`.
+`.github/agents/` holds five agents. Definition: Analyst, Spec Writer, Spec Reviewer.
+Realisation: Planner, Reviewer. Each is forbidden from doing the next one's job, and the
+Planner writes the plan to `docs/plans/` rather than leaving it in the chat. See
+`.github/agents/README.md`.
