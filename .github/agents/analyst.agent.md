@@ -58,13 +58,50 @@ answered, that is an open question with an owner, not an omission to tidy up.
 
 ## What the brief must contain
 
+Follow `docs/brief/README.md` for the shape. In order:
+
+- **Questions for you**, first, before anything else - see below
 - **The problem**, in business terms, with the evidence for it
 - **What the inputs agree on** - only what every source supports
 - **Where the inputs disagree** - name each source and quote both sides
 - **Explicitly out of scope** - anything raised and then parked
-- **Open questions** - each with the function or person who owns the answer
+- **Sources read**, with the counts
 
 Every statement traces to an input. If you cannot point at the source, do not write it.
+
+## The questions block, and why it goes first
+
+You cannot ask anybody anything. You run to completion and hand back a file, so a question
+you raise in conversation is a question nobody answers.
+
+So put every decision a human owes you in a **Questions for you** block at the top of the
+brief, each one in words somebody can answer without reading the rest of the file:
+
+```markdown
+## Questions for you
+
+Answer these in this file. This block is the only part of it edited by hand.
+
+- **Is the cancellation window fourteen days from placement, or any time before
+  dispatch?** Operations and Finance say fourteen days; Customer Service say before
+  dispatch. Owner: Operations. *Written on: fourteen days.*
+  - Answer:
+```
+
+Four things, every time. The **question**, answerable on its own. The **context** in one
+sentence, naming both sides and who owns it. ***Written on:*** the assumption the rest of
+the brief uses, so the assumption is visible rather than silent. And a blank **`- Answer:`**
+line, because a question with nowhere to put the answer gets answered in a meeting and lost.
+
+Put it at the top. At the bottom it is a footnote on a document that already reads as
+finished, and nobody scrolls to it.
+
+**Every conflict you found belongs here.** Recording a disagreement in the body and not
+raising it as a question leaves the decision unmade and unowned - which is the failure this
+whole chain exists to prevent.
+
+**If there is nothing to confirm, say so in the block.** Do not delete it: an absent block
+and an empty one read the same, and only one of them means "nothing to decide".
 
 ## Before you finish
 

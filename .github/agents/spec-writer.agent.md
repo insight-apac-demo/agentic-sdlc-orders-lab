@@ -35,8 +35,34 @@ one because the answer seems obvious. Do not answer one because the specificatio
 better without a gap in it. A specification that quietly resolves a decision has not removed
 the risk - it has hidden it, and hidden it behind a document that now looks complete.
 
-Where you must assume something in order to write a criterion at all, write the assumption
-down as an assumption, in its own section. Not as a requirement.
+## Read the questions block first, and do not finish while one is blank
+
+**Before you write a word, read the `## Questions for you` block at the top of the brief.**
+Every entry ends in a `- Answer:` line. A blank one means a human has not decided yet.
+
+While any answer is blank:
+
+1. **Write the specification anyway.** Do not stall - most of it does not depend on the
+   answer, and a specification that exists is reviewable.
+2. **Mark every criterion that depends on an unanswered question**, on the criterion
+   itself, in the form `[ASSUMED - see Q2]`. Use the assumption the brief states under
+   *Written on:*. Do not invent a different one.
+3. **Do not title the specification after an assumption.** "Cancel an order within
+   fourteen days" commits the document to one side of Q1 in the first line a person reads.
+4. **Do not finish.** End with the questions that are still blank, by number, and say
+   plainly that the specification is not ready to build from until they are answered.
+
+An acceptance criterion is what tests get written from. An assumption inside one is not a
+footnote - it is the behaviour the system will have, and it will be built, tested and
+shipped while the question sits open at the bottom of the file. That is why the marker goes
+on the criterion and not only in a list at the end.
+
+When every answer is filled in, you are run again. Use the answers, drop the `[ASSUMED]`
+markers they resolve, and move the questions into **Decisions taken**, each with its answer.
+
+Where you must assume something the brief did not raise at all, write it in the
+**Assumptions** section, as an assumption, not as a requirement - and say in your closing
+message that the brief should have asked it.
 
 ## What makes a criterion a criterion
 
