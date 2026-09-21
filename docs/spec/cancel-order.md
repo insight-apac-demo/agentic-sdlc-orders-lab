@@ -36,12 +36,32 @@ than fourteen days ago, and the refund is queued automatically.
 - The notification itself. Criterion 6 gives us the record; telling the customer is a
   separate piece of work once question 3 is answered.
 
+## Decisions taken
+
+Answered in `docs/brief/cancel-order-brief.md` before this specification was finished.
+The criteria below are built on them.
+
+1. **The window is fourteen days from placement, not before dispatch.** Operations
+   confirmed against the published policy. Criteria 1 and 3 follow from this; if it is
+   ever revisited, those are the two that change.
+2. **The refund is queued, not synchronous.** Finance. Criterion 5 follows.
+
 ## Open questions
 
-1. **[DECISION NEEDED]** Fourteen days from placement, or any time before dispatch?
-   Written against fourteen days. Owner: Operations.
-2. **[DECISION NEEDED]** Refund synchronous or queued? Written as queued.
-3. **[DECISION NEEDED]** Email only, or email and SMS? Out of scope either way for now.
+Neither blocks the build.
+
+3. **[DECISION NEEDED]** Can an agent cancel on a customer's behalf, or only the
+   customer? Owner: Customer Service. Out of scope for this piece of work - the endpoint
+   takes an actor and records it, so answering it later does not change these criteria.
+4. **[DECISION NEEDED]** Email only, or email and SMS? Out of scope either way for now.
+
+## Assumptions
+
+Neither of these was asked in the brief; both had to be settled to write a criterion.
+
+- The boundary is exact and exclusive: an order placed exactly fourteen days ago is
+  refused, not allowed. Nothing in the inputs says which way the boundary falls.
+- "Placed" means the order's own status, not the absence of a dispatch record.
 
 ## Notes for whoever builds this
 

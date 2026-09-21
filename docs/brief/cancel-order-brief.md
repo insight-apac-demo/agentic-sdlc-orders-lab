@@ -58,8 +58,12 @@ than resolved here.
 3. **[DECISION NEEDED] Notification channel** - email only, or email and SMS? Customer
    Service consider email the minimum. SMS cost is unknown and nobody owns it.
 
-## Assumption made in order to proceed
+## Decisions taken
 
-The specification below is written against the fourteen day rule, because it is the
-published policy as understood by two of the three sources. If question 1 resolves the
-other way, the acceptance criteria change and this brief must be revised.
+Question 1 was answered by Operations against the published policy: **fourteen days from
+placement.** Question 2 was answered by Finance: **queued.** Both are recorded in
+`docs/spec/cancel-order.md` under Decisions taken, and the acceptance criteria are built
+on them.
+
+Question 3, whether an agent may cancel on a customer's behalf, is still open and is out
+of scope for this piece of work.
