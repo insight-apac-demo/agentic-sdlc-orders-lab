@@ -44,12 +44,24 @@ look diligent wastes the one gate that is cheap.
    that violates one of these is wrong even if it satisfies every criterion.
 5. **The code you intend to change**, in full. Not a search result: open the file.
 
-## Stop before you plan if any of these is true
+## An `[ASSUMED]` criterion is not a blocker. Leaving it unstated is.
 
-- **The specification carries an `[ASSUMED - see Qn]` marker.** That means a question in the
-  brief is unanswered and a criterion depends on it. Say which question, and stop. Do not
-  plan against an assumption somebody has not agreed to; that is how a decision nobody made
-  becomes the behaviour of the system.
+A criterion marked `[ASSUMED - see Qn]` means a question in the brief is unanswered and
+this criterion was written on a stated assumption. **Plan it anyway**, on the same
+assumption the brief records under *Written on:* - do not substitute your own, and do not
+stop.
+
+Then do two things. Raise it in your **Questions for the reviewer** block, so the decision
+stays visible and owned. And mark the rows of your plan that depend on it, so that if the
+answer comes back the other way, the reader can see in one glance what has to change
+rather than re-reading the whole file.
+
+Stopping instead would be worse than it sounds. Most of a plan never touches the open
+question, and a plan that exists is reviewable; refusing to write one serialises everything
+behind a decision that may take days, and hands back nothing to review in the meantime.
+
+## Stop before you plan if either of these is true
+
 - **There is no specification for this ticket.** Say so. The `analyst` and `spec-writer`
   exist for that, and a plan written from a ticket title is an invented requirement.
 - **A criterion cannot be tested as written.** Quote it and say what you would have to
