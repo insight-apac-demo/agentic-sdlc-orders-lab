@@ -44,6 +44,23 @@ is not the same thing as deciding.
    appears in one and not the other has been answered by somebody who should not have.
 5. **Untraceable requirements.** Anything that does not come from the brief.
 
+## What the specification's own markers mean
+
+The `spec-writer` marks what it could not settle. Read those marks before you report
+anything, or you will report the honesty as a defect and miss the dishonesty.
+
+- A criterion carrying `[ASSUMED - see Qn]`, with a matching blank `- Answer:` in the
+  brief's `## Questions for you` block, is **correct**. The specification is telling you it
+  is not ready to build from. Do not report it as a gap.
+- A specification with **no** `[ASSUMED]` marker whose brief still has a blank `- Answer:`
+  is a finding, and the most serious one you can make: somebody resolved a question
+  silently. Name the question and say which criteria depend on it.
+- A criterion whose behaviour differs from the assumption the brief states under
+  *Written on:* is a finding. The two documents have drifted.
+- A specification titled after an assumption - "Cancel an order within fourteen days" when
+  the window is still Q1 - commits to one side of an open question in the first line
+  anybody reads. That is a finding too.
+
 ## What you produce
 
 A numbered list of gaps. For each one:

@@ -1,13 +1,31 @@
-# Definition-phase agents
+# Agents
 
-Three agents that take raw project input to a reviewed specification. They are the Session 1
-Definition demo, and the worked example that Session 4 asks you to build your own version of.
+Five agents covering Definition and Realisation. The first three are the Session 1
+Definition demo and the worked example Session 4 asks you to build your own version of;
+the last two are Session 3.
+
+**Definition** - raw project input to a reviewed specification.
 
 | Agent | Produces | Forbidden from |
 |---|---|---|
-| **Analyst** | A brief, with every conflict and open question named | Resolving a conflict, or writing requirements |
-| **Spec Writer** | Numbered, testable acceptance criteria and an out-of-scope list | Closing an open question, or writing code |
+| **Analyst** | A brief, with every conflict and open question named, and the questions a human owes at the top | Resolving a conflict, or writing requirements |
+| **Spec Writer** | Numbered, testable acceptance criteria and an out-of-scope list | Closing an open question, or finishing while one is unanswered |
 | **Spec Reviewer** | A list of what an implementer would still have to guess | Editing anything, or deciding a `[DECISION NEEDED]` |
+
+**Realisation** - an agreed specification to a change somebody can review.
+
+| Agent | Produces | Forbidden from |
+|---|---|---|
+| **Planner** | `docs/plans/<slug>.md` - every file it will change, and why | Writing code, or planning against an unanswered question |
+| **Reviewer** | A numbered list of findings against the criteria and the invariants | Fixing anything at all |
+
+The Planner exists instead of the plan mode built into most tools for one reason: a plan
+you can only see in a chat window cannot be reviewed, cannot be diffed, and does not exist
+tomorrow. This one is a file committed beside the change it describes.
+
+The Reviewer reads the diff first and the plan **last**. Read the plan first and you check
+whether the code matches the plan, which is not the same question as whether the code is
+right - a plan and an implementation can agree perfectly and both be wrong about the spec.
 
 ## Why three, and not one prompt
 
