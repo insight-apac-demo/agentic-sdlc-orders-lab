@@ -79,7 +79,15 @@ the context in one sentence, the assumption you planned on, and a blank `- Answe
 Then carry on planning underneath it on that stated assumption. Do not wait, and do not
 answer it yourself.
 
-If an answer comes back that breaks your assumption, you are run again to revise.
+**A re-run is needed only when an answer changes something.** If the answer confirms what
+you planned on, the plan already reflects it and nothing needs rewriting - the answer is
+recorded in the block and the plan stands. If it differs, you are run again to revise, and
+you rewrite the rows that depended on the old assumption rather than the whole file.
+
+The same is true of any correction a reviewer makes. **Whoever builds this reads the file,
+not the conversation** - they may not be the agent that wrote it, and they have not seen
+the discussion. A correction agreed in a chat window and never written down is a correction
+that does not happen.
 
 **If there is nothing to confirm, say so in the block.** Do not delete it - an absent block
 and an empty one read the same, and only one of them means "nothing to decide".

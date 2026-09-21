@@ -49,6 +49,14 @@ again.
 **The plan is never committed with a question open.** If there is nothing to confirm, the
 block says so rather than being deleted.
 
+**Re-run the planner only when an answer changes something.** An answer that confirms what
+the plan was written on needs no revision - record it and move on. An answer that differs
+sends the plan back.
+
+**Corrections go in the file, not the conversation.** Whoever builds from this plan reads
+it as a file, and is often not the agent that wrote it. A correction agreed in a chat
+window and never written down is a correction that does not happen.
+
 ## Criterion to file to test
 
 One row per acceptance criterion. A criterion with no row is one nobody has planned for,
