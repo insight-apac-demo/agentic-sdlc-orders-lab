@@ -39,9 +39,9 @@ Answer these in this file. This block is the only part of it edited by hand.
   dispatch. Owner: Operations. *Written on: fourteen days.*
   - Answer:
 
-- **Can an agent cancel on a customer's behalf, or only the customer?** Raised in the
-  stand-up on the Wednesday and never answered. Owner: Customer Service.
-  *Written on: customer only.*
+- **Does the refund happen in the request, or go on the queue?** Finance have no
+  preference, but it changes what the confirmation screen has to say - queued can be up
+  to three working days. Owner: Finance. *Written on: queued.*
   - Answer:
 ```
 
