@@ -68,8 +68,10 @@ git clone https://github.com/insight-apac-demo/agentic-sdlc-orders-lab.git
 cd agentic-sdlc-orders-lab
 ```
 
-If you would rather work in your own fork - and you should, because you will be
-committing to it - fork it on GitHub first and clone your fork instead.
+You can commit to this clone all day - everything in these labs is local. You only need a
+fork if you want to **push** what you build and still have it next week, because the
+shared repository is read-only to you. If that appeals, fork it on GitHub first and clone
+your fork instead. It costs thirty seconds now and nothing later.
 
 ### Make a branch for your work
 
@@ -102,17 +104,17 @@ Press `Ctrl-C` to stop the app.
 `orders.db` is created and seeded the first time you run. You never need to edit it. If
 the data looks wrong, reset it:
 
-```powershell
-./scripts/reset.ps1       # Windows
-```
-
 ```bash
-./scripts/reset.sh        # macOS and Linux
+./scripts/reset.sh
 ```
 
-Both delete the database, which rebuilds in about two seconds on the next `dotnet run`.
-The PowerShell one also clears agent output left behind by a previous demo run and warns
-you if the working tree is dirty; the shell one resets the database only.
+That is the one to use, including on Windows, because you are in Git Bash. It deletes the
+database, which rebuilds in about two seconds on the next `dotnet run`.
+
+There is also `./scripts/reset.ps1` for PowerShell. It does a little more - it clears
+agent output left behind by a previous run and warns you if the working tree is dirty -
+so it is worth knowing about if you are resetting between demo runs rather than just
+fixing your data.
 
 ---
 

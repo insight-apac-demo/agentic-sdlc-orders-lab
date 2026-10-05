@@ -161,15 +161,30 @@ above - get it wrong and the skill does not load, with no error.
 
 Writing the files is the quick part. Running it is the lab.
 
-Reload the VS Code window first (`Ctrl-Shift-P` > Developer: Reload Window), or neither
-file will be picked up.
+**1. Reload the window.** `Ctrl-Shift-P` > Developer: Reload Window. Neither file is
+picked up until you do, and this is the single most common reason people think their
+agent is broken.
 
-Point it at something real in this repository:
+**2. Open Chat and select your agent.** Agent mode, then pick it by name from the agent
+dropdown at the top of the chat input - the `name` from your frontmatter, not the file
+name. If it is not in the list, see
+[troubleshooting](00-prerequisites.md#troubleshooting) in lab 0.
 
-- A release-note or review agent: `main...origin/reference/realisation` (a correct
-  implementation) or `main...origin/reference/agent-pr` (a change that builds, passes
-  every test and breaches five of its nine acceptance criteria).
-- A scaffolding agent: ask it to scaffold its thing for `TICKET-102`.
+**3. Give it something real from this repository.** Type a prompt, do not just name a
+branch. Something of this shape:
+
+```
+Write the release note for main...origin/reference/realisation.
+Output it in your reply - do not write a file.
+```
+
+Three targets worth using, depending on what your agent does:
+
+- `main...origin/reference/realisation` - a correct, complete implementation of
+  TICKET-101. Good for a release-note, summary or documentation agent.
+- `main...origin/reference/agent-pr` - a change that builds, passes every test and
+  breaches five of its nine acceptance criteria. Good for a review agent.
+- `TICKET-102` - an unbuilt ticket. Good for a scaffolding or test-plan agent.
 
 **Use the three-dot range rather than checking the branch out.** `git diff main...X` reads
 another branch without switching to it, so you stay on your own branch. An agent pointed

@@ -188,8 +188,19 @@ because a release note that mentions too much still reads as thorough.
 
 Three minutes.
 
-Run all three against the agent you built in lab 1. Record the result at the top of the
-file:
+Running a golden task is not a special mechanism - it is just you, doing the task by hand,
+in order:
+
+1. Open a **fresh chat** and select your agent. Fresh matters: a continued conversation
+   carries context the task did not specify, and then you are not testing the task.
+2. Paste the task's **Input** exactly as you wrote it. If you find yourself adding
+   something to make it work, the Input was incomplete - fix the task, and note that you
+   did.
+3. Read the output against the **Pass condition** only. Not against your general sense of
+   whether it is any good.
+4. Write pass or fail. One word.
+
+Do all three, then record the result at the top of the file:
 
 ```
 Last run: 2026-10-09, 2/3 pass. GT-2 failed - returned a 404 shape for the empty range.
