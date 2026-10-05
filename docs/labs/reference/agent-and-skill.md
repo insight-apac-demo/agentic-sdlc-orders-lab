@@ -5,7 +5,7 @@ see the shape before you write your own, or copy it and adapt it if you are shor
 
 Both files below were run on 5 October 2026. The agent was discovered as
 **Release Note Writer**, the skill as a project skill named `release-note-from-diff`, and
-the agent produced a usable release note from `main...reference/realisation` on the first
+the agent produced a usable release note from `main...origin/reference/realisation` on the first
 attempt. They are not illustrative - they work.
 
 ---

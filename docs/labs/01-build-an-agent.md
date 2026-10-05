@@ -75,14 +75,18 @@ file will be picked up.
 
 Point it at something real in this repository:
 
-- A release-note or review agent: `main...reference/realisation` (a correct
-  implementation) or `main...reference/agent-pr` (a change that builds, passes every test
-  and breaches five of its nine acceptance criteria).
+- A release-note or review agent: `main...origin/reference/realisation` (a correct
+  implementation) or `main...origin/reference/agent-pr` (a change that builds, passes
+  every test and breaches five of its nine acceptance criteria).
 - A scaffolding agent: ask it to scaffold its thing for `TICKET-102`.
 
 **Use the three-dot range rather than checking the branch out.** `git diff main...X` reads
 another branch without switching to it, so you stay on your own branch. An agent pointed
 at a reference branch you have checked out will write files onto it.
+
+**And note the `origin/` prefix.** A fresh clone has only `main` as a local branch; the
+reference branches exist as remote-tracking refs until you check one out. Without the
+prefix you get `unknown revision`.
 
 Then find the output - it may be in the chat, or your agent may have written a file - and
 read it against the sentence you wrote earlier. Not "did it produce something". It will.
@@ -149,7 +153,7 @@ instruction can reliably make an agent *look* at the right thing without making 
 does a second iteration.
 
 **If it did nothing wrong**, you have not tested it yet rather than finished. Point it at
-`main...reference/agent-pr` and try again, or add an instruction about the shape of the
+`main...origin/reference/agent-pr` and try again, or add an instruction about the shape of the
 output so that next time you can see at a glance whether it did the job. "It worked" is
 not a deliverable for this step; a changed instruction and a reason is.
 
