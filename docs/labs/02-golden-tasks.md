@@ -257,6 +257,78 @@ git commit -m "Add three golden tasks for <your-agent>"
 
 ---
 
+## Getting from eyeballing to automatic
+
+You have just run three tasks by hand. The obvious question is how that becomes something
+CI does, and the answer has a useful shape to it.
+
+**You do not automate the eval. You automate the pass condition.** Invoking the agent from
+a script is the easy half - there is a command for it. Deciding whether the output passed
+is the half that either mechanises or does not, and **that was settled when you wrote the
+pass condition in step 2.** This is the payoff for the care you took there, and the reason
+the lab laboured the point.
+
+### Four rungs, and most teams stop on the second
+
+| | What runs | What you do |
+|---|---|---|
+| 1 | nothing | You, a fresh chat, three tasks. Where you are now |
+| 2 | a script invokes the agent | You still read the output and decide. Removes the tedium, keeps the judgement |
+| 3 | a script invokes it and asserts | Fully automatic, for the tasks whose pass condition is mechanical |
+| 4 | CI runs rung 3 on every change to an agent, skill, instruction file or model | You read a red build |
+
+Rung 2 is worth more than it looks. Most of what makes people skip an eval set is the
+retyping, not the judging.
+
+### Rung 2 and 3, concretely
+
+The agent runs headless from the GitHub Copilot CLI (`npm install -g @github/copilot`),
+which takes the same agents and skills out of `.github/` that VS Code does:
+
+```bash
+out=$(copilot -p "Write the release note for main...origin/reference/realisation.
+Output it in your reply - do not write a file." \
+      --agent "Release Note Writer" --allow-all-tools --silent)
+
+# rung 2: look at it yourself
+echo "$out"
+
+# rung 3: for GT-1, whose pass condition was 'the output contains /cancel'
+grep -q "/cancel" <<< "$out" && echo "GT-1 pass" || { echo "GT-1 FAIL"; exit 1; }
+```
+
+That is the whole mechanism. An exit code is all CI needs.
+
+### Which of yours will mechanise
+
+Sort your three. The reference set sorts two out of three, which is a realistic ratio:
+
+| Task | Pass condition | Mechanises? |
+|---|---|---|
+| GT-1 | the output contains `/cancel` | yes - `grep` |
+| GT-3 | no tracked file is modified | yes - `git diff --quiet` exits 0 |
+| GT-2 | no finding is raised against the code | **no** - that is a judgement |
+
+**The ones that do not mechanise are not failures of your writing.** "Did not invent a
+finding", "the tone is right for a customer", "the plan is actually shorter than the
+diff" - these need a reader. The right answer is not to force them into a regex; it is to
+run them less often and at a moment that deserves a human, which is the promotion gate
+below.
+
+Two things that bite on the way:
+
+- **Agent output is not deterministic**, so assert the load-bearing fact, not the wording.
+  `grep "/cancel"` survives a rewrite; matching a whole sentence does not, and a flaky
+  eval gets switched off within a fortnight.
+- **Every run costs tokens.** An eval set on every commit has a bill. Most teams run the
+  mechanical ones per change and the whole set nightly, which is the next section.
+- **Assert the narrowest thing that is actually wrong.** GT-3's check is `git diff
+  --quiet`, not `git status --porcelain`, because the second one is also non-empty when
+  you have an untracked file sitting around - which you do, all through lab 1. A check
+  that goes red for the wrong reason gets ignored just as fast as one that flakes.
+
+---
+
 ## Where these would actually run
 
 You are writing these by hand today. In a real setup they run in three places, and it is

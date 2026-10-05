@@ -160,8 +160,9 @@ The one-sentence mechanisms that would catch these without a human choosing to c
 
 - **GT-1:** a test asserting that `AuditEntry` rows increase by one for every endpoint
   that changes an order's status.
-- **GT-3:** run the reviewer in CI against a clean tree and fail the job if
-  `git status --porcelain` returns anything afterwards.
+- **GT-3:** run the reviewer in CI and fail the job if `git diff --quiet` exits non-zero
+  afterwards. Not `git status --porcelain` - that is also non-empty when untracked files
+  are present, which they usually are, so it would go red for the wrong reason.
 
 GT-2 has no gate, and that is honest. "Did not invent a finding" is not mechanically
 checkable, which is precisely why it needs to be an eval rather than a hook.
