@@ -31,6 +31,7 @@ to get back to a known state in about two seconds.
 | `tickets/` | The backlog we work from |
 | `docs/inputs/` | The raw material for the Definition-stage demo: emails, a transcript, a schema and a vague ask |
 | `docs/spec/` | Where specifications go. Written in Session 2 |
+| `docs/labs/` | Hands-on labs for Session 4B. Start at `docs/labs/README.md` |
 | `AGENTS.md` | Tool-neutral agent instructions. The file that changes agent behaviour |
 | `CLAUDE.md` | Imports AGENTS.md, plus Claude Code specifics |
 | `.github/copilot-instructions.md` | The Copilot mirror |
