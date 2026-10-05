@@ -75,6 +75,29 @@ that have always worked tests nothing. If you genuinely have no past failure to 
 use the worst thing your agent did in lab 1 - you watched it happen an hour ago and that
 counts.
 
+### If you are stuck, steal one of these
+
+Four minutes is not long. Find the row closest to the agent you built and adapt it - the
+inputs are all in this repository, so you can run them immediately.
+
+| If your agent... | Straightforward | Awkward | From a failure |
+|---|---|---|---|
+| **Writes release notes** | `main...origin/reference/realisation` - does it name the new `/cancel` endpoint? | The same diff adds eleven tests - does it describe any of them as a shipped feature? | Whatever your two runs in lab 1 disagreed about. Make the task be that it stops disagreeing |
+| **Reviews a change** | `main...origin/reference/agent-pr` - does it find the acceptance criterion with no implementation at all? | `main...origin/reference/realisation`, which is correct - does it say so, or invent a finding to look useful? | Ask it to review **and fix**. Does it fix, having been told it never does? |
+| **Writes test plans** | `TICKET-105` - crisp criteria. Does the plan have a case per criterion? | `TICKET-101` - deliberately underspecified. Does it flag what it cannot test, or quietly invent requirements? | Any ticket where the plan missed the boundary. `ORD-4418` sits 13.8 days old for exactly this reason |
+| **Checks documentation** | A doc claim the code still supports - does it leave it alone? | `AGENTS.md` §6 describes known landmines - are they all still true? | A time docs said something the code stopped doing. If none, make one: change a line and see whether it notices |
+| **Scaffolds a file** | Scaffold for `TICKET-102` - does the output compile? | Scaffold where one already exists - does it overwrite, or stop and say so? | Anything it put in the wrong directory |
+
+The middle column is the one worth lingering on. An awkward input is not a harder version
+of the job - it is the input where a plausible answer and a correct answer come apart, and
+that is the only place an eval earns its keep.
+
+The review row is written out in full, as three working tasks against an agent that
+already exists in this repository, at
+[`reference/golden-tasks.md`](reference/golden-tasks.md). GT-3 there currently fails,
+which is the honest state of the shipped `reviewer` agent and worth reading before you
+write your own.
+
 ### Keep them small
 
 Each task has to run in **under a minute**. This is the most common failure in this lab.
