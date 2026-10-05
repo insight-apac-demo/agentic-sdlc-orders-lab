@@ -83,8 +83,9 @@ the data looks wrong, reset it:
 ./scripts/reset.sh        # macOS and Linux
 ```
 
-That deletes the database and clears any agent output left behind by a previous run. It
-rebuilds in about two seconds on the next `dotnet run`.
+Both delete the database, which rebuilds in about two seconds on the next `dotnet run`.
+The PowerShell one also clears agent output left behind by a previous demo run and warns
+you if the working tree is dirty; the shell one resets the database only.
 
 ---
 

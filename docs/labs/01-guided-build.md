@@ -311,7 +311,10 @@ Change the `name`, change the `description`, and change the "What you are lookin
 section to the class of problem your team actually hits. That is a real agent and it took
 four minutes.
 
-For the skill, `.github/skills/` has a worked example with the same frontmatter shape.
+For the skill, the complete `SKILL.md` in [step 3](#step-3---write-the-skill) above is a
+working file. Copy it, change the `name` to match your folder, rewrite the steps, and you
+have a skill. `.github/skills/` is empty until somebody writes the first one, and today
+that is you.
 
 You still have to do steps 4 and 5. Adapting somebody else's agent and never running it
 teaches nothing at all.
