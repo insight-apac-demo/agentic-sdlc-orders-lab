@@ -124,8 +124,29 @@ watched it do across the two runs. Not a rewrite. One.
 | Quietly guessed at something ambiguous | "Anything you had to assume is marked `[DECISION NEEDED]`, named, not resolved" |
 | The two runs disagreed | Whatever makes them agree. This is usually the best one available |
 
-Re-run it on the same input and see whether it worked. That loop - observe, change one
-thing, re-run, compare - is the rest of the module in miniature.
+Re-run it on the same input, twice again, and see whether it worked. That loop - observe,
+change one thing, re-run, compare - is the rest of the module in miniature.
+
+### Expect it to half-work
+
+This is what happened when we did it on the worked example. The vague instruction was
+*"a separate Operational notes section for anything that changes how the service is run or
+configured"*, and it was replaced with a specific one naming three things that count:
+configuration keys, new constructor or DI dependencies, and database migrations.
+
+Before the change, four runs gave four unrelated answers. After it, both runs found the
+same fact - a new `IPaymentService` constructor dependency. That is the instruction
+working: it pointed the agent at the right thing.
+
+But one of those two runs opened with *"Operational notes: none"* and then described the
+constructor dependency in the same sentence - having just been told, in that instruction,
+that a constructor dependency is one of the three things that counts.
+
+**So: substantially better, still not right.** That is the normal outcome and it is worth
+seeing, because the temptation after one fix is to declare victory and stop. An
+instruction can reliably make an agent *look* at the right thing without making it
+*classify* what it finds. The second iteration is where you learn that, and almost nobody
+does a second iteration.
 
 **If it did nothing wrong**, you have not tested it yet rather than finished. Point it at
 `main...reference/agent-pr` and try again, or add an instruction about the shape of the
@@ -165,8 +186,13 @@ or an existing agent:
 cp .github/agents/reviewer.agent.md .github/agents/my-reviewer.agent.md
 ```
 
-Change the `name`, the `description`, and the section describing what it looks for. That
-is a real agent and it took four minutes.
+Change the `name` **first**, then the `description`, then the section describing what it
+looks for. That is a real agent and it took four minutes.
+
+> **Change the `name` before you change anything else.** Copy the file and leave the
+> frontmatter alone and you now have two agents both called `Reviewer`. The picker lists
+> the name twice, `--agent "Reviewer"` silently resolves to one of them, and nothing warns
+> you which. You can spend ten minutes editing a file that is not the one running.
 
 You still have to run it twice and change one instruction. Adapting somebody else's agent
 and never running it teaches nothing at all.
