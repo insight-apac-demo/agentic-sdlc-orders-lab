@@ -222,6 +222,23 @@ Whatever turns out to be unstable is the part your instructions have not pinned 
 
 ## Changing one instruction
 
+**In your own file - `.github/agents/<your-agent>.agent.md` or
+`.github/skills/<your-skill>/SKILL.md`.** Open it in the editor and change a line.
+
+Not in the chat. Not in `AGENTS.md`.
+
+- **Not the chat prompt.** Telling the agent "and this time don't invent bullets" works,
+  and it works exactly once. Close the chat and it is gone. That is prompting, and it is
+  what this module exists to move you off.
+- **Not `AGENTS.md`.** Lab 0 called that an *instruction file*, and it is a different
+  thing: shared, loaded on every request, governing every agent in the repository
+  including the five you did not write. Your agent's behaviour is not its job.
+
+The distinction is the whole point of the step. A fix you type into a chat lasts one
+conversation. The same fix written into the file lasts every conversation anybody has
+with that agent, including the ones you are not in - and it can be reviewed, diffed and
+argued with, because it is a line in a file somebody can see.
+
 Now change **one** instruction: the one that would have prevented the worst thing you
 watched it do across the two runs. Not a rewrite. One.
 
@@ -279,7 +296,8 @@ git commit -m "Add <your-agent> agent and <your-skill> skill"
 - [ ] An agent definition exists at `.github/agents/<name>.agent.md` and is committed.
 - [ ] A skill exists at `.github/skills/<name>/SKILL.md` and is committed.
 - [ ] You have run it at least twice against real code in this repository.
-- [ ] You can name one instruction you changed after seeing the output, and say why.
+- [ ] You changed one line in your agent or skill file after seeing the output, and can
+      say which line and why.
 
 The last one is the real bar. An agent nobody has watched run is a guess.
 
