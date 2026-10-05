@@ -45,7 +45,7 @@ numbered acceptance criteria.
 Make a branch so your work is reviewable as a diff:
 
 ```bash
-git switch -c lab/export-$(git config user.name | tr ' ' '-')
+git switch -c lab/export-yourname
 ```
 
 Then put an agent on it. Use the one you built in lab 1 if it is the right shape for the
@@ -65,11 +65,12 @@ dotnet run --project src/Orders.Api
 ```
 
 ```bash
-# a wide range - keep this, you will want it in step 3
-curl "http://localhost:5000/api/orders/export?from=2026-01-01&to=2030-01-01" | tee ~/my-export.csv
+# a wide range - save it, you will want it in step 3
+curl -s "http://localhost:5000/api/orders/export?from=2026-01-01&to=2030-01-01" -o ~/my-export.csv
+cat ~/my-export.csv
 
-# an empty one
-curl -i "http://localhost:5000/api/orders/export?from=2030-01-01&to=2030-02-01" | head -1
+# an empty one - just the status code
+curl -s -o /dev/null -w "%{http_code}\n" "http://localhost:5000/api/orders/export?from=2030-01-01&to=2030-02-01"
 ```
 
 Save it outside the repository, as above. In a moment you will switch branches and your
@@ -186,9 +187,12 @@ dotnet run --project src/Orders.Api
    different answer. Put the two side by side:
 
    ```bash
-   curl -s "http://localhost:5000/api/orders/export?from=2026-01-01&to=2030-01-01" > ~/theirs.csv
-   diff ~/my-export.csv ~/theirs.csv
+   curl -s "http://localhost:5000/api/orders/export?from=2026-01-01&to=2030-01-01" -o ~/theirs.csv
+   code --diff ~/my-export.csv ~/theirs.csv
    ```
+
+   `code --diff` opens them side by side in VS Code, which is easier to read than terminal
+   output and works the same on every platform.
 
 Read the output as Finance would, not as an engineer would. They open it in a spreadsheet
 and reconcile by date. Ask what a column has to contain for that to work.

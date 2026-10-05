@@ -95,13 +95,18 @@ here.
 Whatever appears in both runs is the agent. Whatever appears in one is luck, and a single
 run cannot tell you which is which - they look identical.
 
-You will usually find that some parts are stable and some are not, in the same output.
-Four runs of the worked example produced four different "Operational notes" sections -
-one about audit entries, one about configuration, one naming a new constructor
-dependency, one saying there were none - while the closing line about what would surprise
-support said the same thing every time. Both halves were written with equal confidence.
+You will usually find that some parts of the output are stable and some are not. Six runs
+of the worked example produced four different "Operational notes" sections - audit
+entries, configuration, a new constructor dependency, and none - while the closing line
+about what would surprise support said the same thing every time. Every version was
+written with the same confidence.
 
-The unstable half is the one your instructions have not pinned down yet.
+Two runs will not always disagree; twice out of those six they matched. If yours agree,
+take a third sample rather than concluding the agent is deterministic - the point is that
+you cannot tell a stable answer from a lucky one without more than one, and most people
+never take a second.
+
+Whatever turns out to be unstable is the part your instructions have not pinned down.
 
 ---
 

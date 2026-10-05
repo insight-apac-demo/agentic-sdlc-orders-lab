@@ -150,11 +150,15 @@ numbered steps and quality criteria. If you find yourself writing the same conte
 both, you need one of them and not the other, and that is a legitimate answer.
 
 **It is not perfect, and that is useful.** Run it twice on the same input and compare the
-"Operational notes" section. Across four runs it produced four different answers - audit
+"Operational notes" section. Across six runs it produced four different answers - audit
 entries, configuration, a new constructor dependency, and "none" - while the closing line
-about what would surprise support came out the same every time. Both halves were written
+about what would surprise support came out the same every time. Every version was written
 with the same confidence.
 
-That split is the thing lab 1 asks you to fix, and it is reliable enough to plan a lab
-around: the sections where the instructions are specific stay put, and the one where they
-only say "anything that changes how the service is run" moves every time.
+The split is not random. The instructions are specific about the paragraph, the bullets
+and the closing line, and those hold. The only thing they say about operational notes is
+"anything that changes how the service is run or configured", and that is the section that
+moves. Vague instruction, unstable output - which is the thing lab 1 asks you to fix.
+
+Two runs will not always disagree. Twice in those six they matched, so if yours agree,
+take a third sample rather than concluding the agent is deterministic.

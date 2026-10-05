@@ -32,6 +32,33 @@ below.
 A newer SDK is fine. The projects target `net8.0` and a .NET 9 or 10 SDK will build them
 without complaint.
 
+### On Windows, use Git Bash - not PowerShell
+
+This matters more than it sounds, and it takes thirty seconds.
+
+Every command in these labs is written for a POSIX shell. That is the default on macOS and
+Linux, and on Windows it is Git Bash, which was installed alongside git. In VS Code, open
+the terminal, click the dropdown next to the `+`, and choose **Git Bash**. Make it the
+default while you are there.
+
+PowerShell does not simply refuse these commands. It does something else, because several
+of the names mean different things there:
+
+| Command | What PowerShell does instead |
+|---|---|
+| `curl` | An alias for `Invoke-WebRequest`. The `-s`, `-i` and `-o` flags do not mean what curl means by them |
+| `diff` | An alias for `Compare-Object`. Given two file paths it compares **the two path strings**, not the files, and hands back a confident, meaningless answer |
+| `tee` | An alias for `Tee-Object` |
+| `head`, `tr` | Do not exist at all |
+| `~` in a path | Works for PowerShell's own commands, but is passed through literally to programs like `curl.exe` |
+
+The `diff` row is why this section exists. The others fail loudly and you will know about
+it. That one succeeds and gives you the wrong answer.
+
+If you are stuck with PowerShell for policy reasons everything still works, but use
+`curl.exe` rather than `curl`, `$env:USERPROFILE` rather than `~`, and `code --diff a b`
+rather than `diff`.
+
 ---
 
 ## 2. Get the repository
