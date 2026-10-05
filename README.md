@@ -70,6 +70,7 @@ time will refuse it; a correct one will cancel it.
 | `reference/definition` | The brief and specification as they should come out of the Definition demo |
 | `reference/realisation` | TICKET-101 implemented properly, with tests |
 | `reference/agent-pr` | TICKET-101 implemented the way an agent plausibly does it. CI green, and wrong. This is the Session 3 review target |
+| `lab/order-export` | TICKET-105 implemented the same way. CI green, and wrong. The Session 4B lab 3 review target |
 
 Reference branches exist so nobody is ever stuck watching. If your environment fights
 you, check one out and carry on.

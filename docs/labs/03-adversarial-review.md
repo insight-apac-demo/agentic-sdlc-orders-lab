@@ -112,10 +112,19 @@ The fastest way to find the defect in this ticket is to execute it.
 dotnet run --project src/Orders.Api
 ```
 
-Then exercise the export over a range that includes the boundary. `ORD-4418` sits 13.8
-days old and `ORD-4422` sits 15.4 days old, so a range with its edge between them will
-tell you quickly whether the date handling is right. An empty range is worth one request
-of its own.
+Three requests are worth making, and between them they reach most of the criteria:
+
+1. **A wide range**, covering everything. Then open `GET /api/orders` beside it, which
+   returns the same orders with their timestamps, and compare one row against the other.
+   Two views of the same data disagreeing is the fastest defect-finding tool you have.
+2. **An empty range** - entirely in the future will do. Read criterion 6 first, then look
+   at what you got.
+3. **A range whose edge falls between 13 and 14 days ago.** `ORD-4418` sits at 13.8 days
+   and `ORD-4422` at 15.4, so the edge between them tells you whether the filtering is
+   right.
+
+Read the output as Finance would, not as an engineer would. They open it in a spreadsheet
+and reconcile by date. Ask what a column has to contain for that to work.
 
 ### Find at least one real defect
 
@@ -234,22 +243,38 @@ and the only honest answers are "yes, because of X" or "no". "Probably" means no
 ## Fallback
 
 If your agent did not produce anything reviewable, or you ran out of time in step 1,
-review a diff that is already prepared:
+review a diff that is already prepared. Everything from step 2 onwards works unchanged.
+
+### First choice - the same ticket, already built
+
+```bash
+git switch lab/order-export
+git diff main...HEAD
+dotnet test OrdersService.sln     # Passed: 17
+```
+
+TICKET-105, implemented the way an agent plausibly does it. It builds, the whole suite is
+green, and it does not satisfy `docs/spec/order-export.md`. This is the same ticket and
+the same specification you were working, so nothing you have read so far is wasted.
+
+While you are in there, open `tests/Orders.Tests/OrderExportTests.cs`. Four tests, none
+of them unreasonable, all of them green. Ask yourself which criterion each one actually
+checks - and which criteria nothing checks at all. That gap is the entire reason a green
+build means so little, and it is easier to see in somebody else's tests than your own.
+
+### Second choice - a different ticket
 
 ```bash
 git switch reference/agent-pr
 git diff main...HEAD
 ```
 
-That branch is TICKET-101 - order cancellation - implemented the way an agent plausibly
-does it. It builds. All seventeen tests pass. CI is green. It is wrong in three places,
-and the specification it is wrong against is on the same branch at
-`docs/spec/cancel-order.md`.
+TICKET-101, order cancellation, built the way an agent plausibly does it. Also green,
+also wrong in three places, with its specification on the same branch at
+`docs/spec/cancel-order.md`. Use this one if you have already worked `lab/order-export`.
 
-The defect classes are the same ones TICKET-105 produces, so the lesson is identical. You
-lose the authoring and you keep the lesson.
-
-Everything from step 2 onwards works unchanged.
+The defect classes are the same in all three paths, so the lesson is identical. You lose
+the authoring and you keep the lesson.
 
 ---
 
