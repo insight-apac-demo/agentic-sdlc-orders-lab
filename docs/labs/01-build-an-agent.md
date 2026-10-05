@@ -19,6 +19,18 @@ There is a complete, working agent and skill at
 the shape, or copy it and adapt it if you would rather spend the time on the running and
 the fixing - which is where the lesson is.
 
+Roughly how the sixteen minutes goes:
+
+| | |
+|---|---|
+| Choose the job | 2 |
+| Write the two files | 8 |
+| Run it, twice | 4 |
+| Change one instruction and re-run | 2 |
+
+If you are still choosing at the four minute mark, take a job from the table below and
+move on. The writing is not where the learning is.
+
 ---
 
 ## What you are producing
@@ -63,6 +75,85 @@ Keep that sentence. You need it twice more today.
 | Turning a ticket into a draft test plan | Anything you have done once |
 | Writing the release note from a diff | Anything where you could not say what correct looks like |
 | Checking whether documentation still matches the code | |
+
+---
+
+## Write the two files
+
+Eight minutes for both. Skeletons below - fill them in rather than copying. The complete
+worked versions are in [`reference/agent-and-skill.md`](reference/agent-and-skill.md) if
+you want the finished shape beside you.
+
+### The agent
+
+Create `.github/agents/<your-agent>.agent.md`. The file name is lower case and hyphenated
+and ends in `.agent.md`.
+
+```markdown
+---
+name: Your Agent Name
+description: What it does, and when somebody should reach for it.
+---
+
+One or two sentences: who this is, and what it is for.
+
+## What to read, in order
+
+1.
+
+## What you produce
+
+-
+
+## Never
+
+-
+-
+
+## Finish with
+
+```
+
+`name` and `description` are the only required fields. The `name` is the display name - it
+appears in the agent picker, may contain spaces and capitals, and does **not** have to
+match the file name.
+
+Add `tools` if you want to narrow what it can reach. It is an allowlist, so a reviewer
+that must not edit gets `tools: ['read', 'search']` rather than an instruction asking it
+not to. An instruction is a request; a missing tool is a boundary.
+
+### The skill
+
+A skill is a folder, not a file. Create `.github/skills/<your-skill>/SKILL.md`.
+
+```markdown
+---
+name: your-skill
+description: What the procedure does, and when to run it.
+---
+
+# Title
+
+## Goal
+
+What a correct result looks like, in a sentence or two.
+
+## Steps
+
+1.
+
+## Constraints
+
+-
+
+## Quality criteria
+
+-
+```
+
+The folder name and the `name` in the frontmatter must match exactly, and both are lower
+case letters, numbers and hyphens only. This is the first of the two silent failures
+above - get it wrong and the skill does not load, with no error.
 
 ---
 
