@@ -63,7 +63,16 @@ Write the sentence down. You will need it in lab 2.
 
 Four minutes. An agent is **who**: a role, with boundaries.
 
-Create `.github/agents/<your-agent>.agent.md`. Use a short, lower case, hyphenated name.
+Create `.github/agents/<your-agent>.agent.md`. Two different names are in play and it is
+worth being clear about which is which:
+
+- **The file name** is lower case and hyphenated, and ends in `.agent.md`. It is how the
+  repository stays tidy.
+- **The `name:` in the frontmatter** is the display name. It is what appears in the agent
+  picker and what you type after `--agent` on the command line, and it may contain spaces
+  and capitals. `Release Note Writer` is a valid agent name.
+
+Unlike skills, there is no rule that the two must match.
 
 ```markdown
 ---
@@ -239,17 +248,39 @@ Three minutes. This is not optional and it is not a formality.
 2. Open the Chat panel and select your agent from the dropdown.
 3. Point it at something real in this repository. Suggestions:
 
-   - A release-note agent: `git switch reference/realisation` first, then point it at
-     `main...HEAD`.
-   - A review agent: point it at `reference/agent-pr`, which is a real change with real
+   - A release-note agent: `main...reference/realisation`, which is a complete, correct
+     implementation of TICKET-101.
+   - A review agent: `main...reference/agent-pr`, which is a real change with real
      problems in it.
    - A scaffolding agent: ask it to scaffold the thing it scaffolds, for `TICKET-102`.
 
-4. **Read what comes back properly.** Not "did it produce something" - it will. Read it
-   against the one sentence you wrote in step 1.
+   **Use the three-dot range rather than checking the branch out.** `git diff main...X`
+   reads another branch without switching to it, so you stay on your own branch and
+   nothing an agent writes lands somewhere it should not. An agent pointed at a reference
+   branch you have checked out will happily create files on it.
 
-Write down the worst thing it did. Not the most obviously wrong - the worst. The two are
-usually different, and the gap between them is most of what this module is about.
+4. **Find the output.** It may be in the chat, or your agent may have written a file - a
+   well-specified one usually writes a file and tells you where. Open whatever it
+   produced before judging it.
+
+5. **Read it against the one sentence you wrote in step 1.** Not "did it produce
+   something" - it will.
+
+### Then run it a second time, unchanged
+
+Same agent, same input, new chat. This takes thirty seconds and it is the most
+instructive thing in the lab.
+
+Compare the two outputs. Whatever appears in both is the agent. Whatever appears in only
+one is luck, and you cannot tell the two apart from a single run - they look identical.
+
+When this was written, two runs of the example agent disagreed about whether the change
+had any operational impact at all. One listed a new constructor dependency; the other
+said "Operational notes: none". Both were confident.
+
+Now write down the worst thing it did across the two runs. Not the most obviously wrong -
+the worst. The two are usually different, and the gap between them is most of what this
+module is about.
 
 ---
 
@@ -274,6 +305,24 @@ Some of the shapes this usually takes:
 
 Then run it again on the same input and see whether it worked. You now have the loop that
 the rest of this module is about: observe, change one thing, re-run, compare.
+
+### If it did nothing wrong
+
+That happens, particularly if you adapted the worked example, and it is not a reason to
+skip this step. Pick one of these instead:
+
+- **The two runs disagreed about something.** Write the instruction that would make them
+  agree. That is the highest-value fix available and it is almost always there.
+- **It was right, but you could not check it quickly.** Add an instruction about the shape
+  of the output - a fixed heading order, a required section, one bullet per item - so that
+  next time you can see at a glance whether it did the job.
+- **It was right about an easy input.** Then you have not tested it yet. Point it at
+  `main...reference/agent-pr`, a change that builds, passes every test and is wrong in
+  several places, and try again.
+
+What you must not do is write "it worked" and move on. The deliverable for this step is a
+changed instruction and a reason, and "no change needed" is only true once you have tried
+to break it.
 
 ---
 
@@ -338,7 +387,8 @@ not, and lab 2 is going to ask you to test these.
 
 **It worked first time.** Treat that with suspicion rather than satisfaction. Point it at
 something harder before you believe it - `reference/agent-pr` is a change that builds,
-passes every test and is wrong in three places, and almost nothing catches all three.
+passes every test and breaches five of its nine acceptance criteria, and almost nothing
+catches all of them.
 
 ---
 
