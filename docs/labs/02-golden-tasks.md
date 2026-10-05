@@ -92,6 +92,33 @@ The middle column is the one worth lingering on. An awkward input is not a harde
 of the job - it is the input where a plausible answer and a correct answer come apart, and
 that is the only place an eval earns its keep.
 
+### Make one of them prove the skill is loading
+
+You built two things in lab 1 and you only select one of them. You pick the **agent** from
+the dropdown. The **skill** is supposed to load on its own, when its `description` matches
+what you asked for.
+
+Supposed to. We measured it, with a line in the `SKILL.md` that appeared in no other file:
+unnamed, the skill loaded on **three runs out of four**. Named explicitly in the prompt, it
+loaded every time. Small sample, but the shape is the point - it is a match, not a
+guarantee.
+
+So an eval set that only exercises the agent can report 3/3 while the skill contributes
+nothing. That is not hypothetical: lab 1 named two ways a skill fails silently, and a
+folder name that does not match is one of them. **You would have a broken skill and a green
+eval set**, which is worse than having no eval set, because now you believe something.
+
+Catching it is cheap. Put one instruction in your `SKILL.md` that appears in no other file
+- a required closing line, a heading the agent never mentions, a fixed ordering - and make
+one task whose pass condition is that it shows up:
+
+> **Pass condition.** The output ends with the line the skill requires. If it does not, the
+> skill did not load, whatever else the output got right.
+
+That is a canary. It tests plumbing rather than quality, and it is the only task in your
+set that can tell the difference between "the agent did this badly" and "half of what I
+built was never in the room".
+
 The review row is written out in full, as three working tasks against an agent that
 already exists in this repository, at
 [`reference/golden-tasks.md`](reference/golden-tasks.md). GT-3 there currently fails,
@@ -216,6 +243,8 @@ in order:
 
 1. Open a **fresh chat** and select your agent. Fresh matters: a continued conversation
    carries context the task did not specify, and then you are not testing the task.
+   Select the agent only - do **not** name the skill in the prompt unless the task says
+   to. Naming it guarantees it loads, which hides exactly what the canary task is for.
 2. Paste the task's **Input** exactly as you wrote it. If you find yourself adding
    something to make it work, the Input was incomplete - fix the task, and note that you
    did.
