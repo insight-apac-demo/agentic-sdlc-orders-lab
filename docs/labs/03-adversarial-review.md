@@ -65,10 +65,16 @@ dotnet run --project src/Orders.Api
 ```
 
 ```bash
-# a wide range, and an empty one
-curl "http://localhost:5000/api/orders/export?from=2026-01-01&to=2030-01-01"
+# a wide range - keep this, you will want it in step 3
+curl "http://localhost:5000/api/orders/export?from=2026-01-01&to=2030-01-01" | tee ~/my-export.csv
+
+# an empty one
 curl -i "http://localhost:5000/api/orders/export?from=2030-01-01&to=2030-02-01" | head -1
 ```
+
+Save it outside the repository, as above. In a moment you will switch branches and your
+own build will not be in the working tree any more - and a stray `.csv` inside the repo
+would get in the way of that switch.
 
 ### What you should see, and why it matters
 
@@ -97,6 +103,24 @@ criteria you wrote. If you had written that spec in a hurry, on a Friday, would 
 named those three things?
 
 Stop the app with `Ctrl-C` before moving on.
+
+### Commit it before you go any further
+
+```bash
+git add -A
+git commit -m "TICKET-105 export, built from the specification"
+```
+
+**This is not optional and it is not tidiness.** The next step switches branches, and git
+refuses to switch when uncommitted work would be overwritten. Your build touches
+`OrdersEndpoints.cs` and `Program.cs`, and so does the branch you are about to move to, so
+without this you get:
+
+```
+error: Your local changes to the following files would be overwritten by checkout
+```
+
+Commit, and the switch is clean.
 
 ---
 
@@ -158,8 +182,13 @@ dotnet run --project src/Orders.Api
    data disagreeing is the fastest defect-finding tool you have.
 2. **An empty range** - entirely in the future will do. Read criterion 6 first, then look
    at what you got.
-3. **Your own export from step 1**, if you still have it. Same ticket, same criteria,
-   different answer. Put the two files side by side.
+3. **Your own export from step 1** - `~/my-export.csv`. Same ticket, same criteria,
+   different answer. Put the two side by side:
+
+   ```bash
+   curl -s "http://localhost:5000/api/orders/export?from=2026-01-01&to=2030-01-01" > ~/theirs.csv
+   diff ~/my-export.csv ~/theirs.csv
+   ```
 
 Read the output as Finance would, not as an engineer would. They open it in a spreadsheet
 and reconcile by date. Ask what a column has to contain for that to work.

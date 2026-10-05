@@ -95,6 +95,14 @@ here.
 Whatever appears in both runs is the agent. Whatever appears in one is luck, and a single
 run cannot tell you which is which - they look identical.
 
+You will usually find that some parts are stable and some are not, in the same output.
+Four runs of the worked example produced four different "Operational notes" sections -
+one about audit entries, one about configuration, one naming a new constructor
+dependency, one saying there were none - while the closing line about what would surprise
+support said the same thing every time. Both halves were written with equal confidence.
+
+The unstable half is the one your instructions have not pinned down yet.
+
 ---
 
 ## Changing one instruction

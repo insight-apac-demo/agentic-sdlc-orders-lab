@@ -149,7 +149,12 @@ role - who it is, what it may touch, what it must never do. The skill is a proce
 numbered steps and quality criteria. If you find yourself writing the same content into
 both, you need one of them and not the other, and that is a legitimate answer.
 
-**It is not perfect, and that is useful.** Run it twice on the same input and the two
-runs disagree about whether a change has operational impact - one lists a new constructor
-dependency, the other says "Operational notes: none". Both sound equally confident. That
-disagreement is the thing lab 1 asks you to fix.
+**It is not perfect, and that is useful.** Run it twice on the same input and compare the
+"Operational notes" section. Across four runs it produced four different answers - audit
+entries, configuration, a new constructor dependency, and "none" - while the closing line
+about what would surprise support came out the same every time. Both halves were written
+with the same confidence.
+
+That split is the thing lab 1 asks you to fix, and it is reliable enough to plan a lab
+around: the sections where the instructions are specific stay put, and the one where they
+only say "anything that changes how the service is run" moves every time.
