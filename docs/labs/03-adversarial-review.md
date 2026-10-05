@@ -45,8 +45,12 @@ numbered acceptance criteria.
 Make a branch so your work is reviewable as a diff:
 
 ```bash
-git switch -c lab/export-yourname
+git switch -c lab/export-<your-name>
 ```
+
+Your own branch, in your own clone. Everyone in the room is working on a branch of that
+name and none of them collide, because nobody is pushing anything - the repository is
+read-only to you unless you forked it.
 
 Then put an agent on it. Use the one you built in lab 1 if it is the right shape for the
 job; otherwise use Agent mode.
@@ -305,14 +309,21 @@ Write your gate at the bottom of your eval file, under a `## Gates` heading.
 
 ## Step 6 - commit
 
-Switch back to your own branch first - `lab/order-export` is a shared review target and
-your notes do not belong on it.
+Switch back to your own branch first - `lab/order-export` is a review target and nothing
+you write belongs on it.
 
 ```bash
+git restore .        # throw away anything an agent changed while you reviewed
 git switch -
 git add .github/agents/<your-agent>.evals.md
 git commit -m "Add regression case and quality gate from the TICKET-105 review"
 ```
+
+The `git restore` is there because an agent may well have edited something. Ask the
+`reviewer` to fix what it found and it will, despite being told not to - it changed six
+tracked files when we tried it. Leave those edits in place and `git switch -` refuses to
+move, which is a confusing thing to hit in the last two minutes of a lab. Nothing on that
+branch is yours, so discarding is always the right answer.
 
 ---
 
