@@ -1,6 +1,6 @@
 # Lab 2 - write three golden tasks
 
-**18 minutes. Guided.**
+**18 minutes, independent.**
 
 ## Goal
 

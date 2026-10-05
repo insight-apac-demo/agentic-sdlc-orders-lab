@@ -4,14 +4,16 @@ Ninety minutes, and almost all of it is you doing something. You build an agent,
 write the tests that say whether it works, and then you review its output like an
 adversary.
 
-Work through these in order. Each one depends on the one before it.
+Three labs and a setup step. Work through them in order - each one depends on the one
+before it, and each is self-directed: a goal, the constraints that matter, and a way to
+tell when you are done.
 
 | # | Lab | Time | You end up with |
 |---|---|---|---|
 | 0 | [Prerequisites and setup](00-prerequisites.md) | before the session | A repository that builds, tests green, and Copilot answering |
-| 1 | [Guided build - your first agent and skill](01-guided-build.md) | 16 min | One custom agent and one skill, committed |
+| 1 | [Build an agent and a skill](01-build-an-agent.md) | 16 min | One custom agent and one skill, committed |
 | 2 | [Write three golden tasks](02-golden-tasks.md) | 18 min | Three tasks with known-good outcomes, committed beside the agent |
-| 3 | [Adversarially review your own agent](03-adversarial-review.md) | 22 min | A written regression case and the quality gate that would have caught it |
+| 3 | [Adversarially review an agent's work](03-adversarial-review.md) | 22 min | A written regression case and the quality gate that would have caught it |
 
 Do lab 0 **before** the session starts. It takes about ten minutes the first time and
 it is the single biggest cause of people losing the first half of the module.

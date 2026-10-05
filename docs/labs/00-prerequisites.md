@@ -3,8 +3,8 @@
 Do this **before** the session. It takes about ten minutes the first time, and two
 minutes on any machine that has done it once.
 
-If you turn up without it, you will spend the guided build installing a toolchain
-instead of writing an agent, and the guided build is only sixteen minutes long.
+If you turn up without it, you will spend the first lab installing a toolchain
+instead of writing an agent, and that lab is only sixteen minutes long.
 
 ---
 
@@ -206,4 +206,4 @@ running, and nobody is going to think less of you for it.
 
 ---
 
-Next: [Lab 1 - guided build](01-guided-build.md)
+Next: [Lab 1 - build an agent and a skill](01-build-an-agent.md)
