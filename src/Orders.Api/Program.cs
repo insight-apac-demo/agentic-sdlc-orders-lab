@@ -11,6 +11,7 @@ builder.Services.AddDbContext<OrdersDbContext>(o =>
     o.UseSqlite(builder.Configuration.GetConnectionString("Orders") ?? "Data Source=orders.db"));
 builder.Services.AddScoped<IOrdersService, OrdersService>();
 builder.Services.AddScoped<IPaymentService, PaymentService>();
+builder.Services.AddScoped<IOrderExportService, OrderExportService>();
 
 var app = builder.Build();
 

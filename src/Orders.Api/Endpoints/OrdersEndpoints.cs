@@ -1,3 +1,4 @@
+using System.Globalization;
 using Microsoft.EntityFrameworkCore;
 using Orders.Api.Contracts;
 using Orders.Api.Data;
@@ -29,6 +30,44 @@ public static class OrdersEndpoints
                 o.Id, o.Reference, o.Customer?.Reference ?? "", o.PlacedUtc,
                 o.Status.ToString(), o.TotalAmount)).ToList();
             return Results.Ok(dto);
+        });
+
+        g.MapGet("/export", async (
+            string? from,
+            string? to,
+            IOrderExportService export,
+            HttpResponse response,
+            CancellationToken ct) =>
+        {
+            const DateTimeStyles styles =
+                DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal;
+
+            if (string.IsNullOrWhiteSpace(from) ||
+                !DateTimeOffset.TryParse(from, CultureInfo.InvariantCulture, styles, out var fromUtc))
+            {
+                return Results.BadRequest(new { error = "Missing or unparseable parameter: from" });
+            }
+
+            if (string.IsNullOrWhiteSpace(to) ||
+                !DateTimeOffset.TryParse(to, CultureInfo.InvariantCulture, styles, out var toUtc))
+            {
+                return Results.BadRequest(new { error = "Missing or unparseable parameter: to" });
+            }
+
+            var csv = await export.ExportCsvAsync(fromUtc, toUtc, ct);
+
+            if (csv.Trim() == OrderExportService.Header)
+            {
+                return Results.NotFound();
+            }
+
+            var name = string.Format(
+                CultureInfo.InvariantCulture,
+                "orders-{0:yyyy-MM-dd}-{1:yyyy-MM-dd}.csv",
+                fromUtc.UtcDateTime, toUtc.UtcDateTime);
+            response.Headers.ContentDisposition = "attachment; filename=\"" + name + "\"";
+
+            return Results.Text(csv, "text/csv");
         });
 
         g.MapGet("/{id:guid}", async (Guid id, IOrdersService svc, CancellationToken ct) =>
