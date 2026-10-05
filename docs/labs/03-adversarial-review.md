@@ -305,6 +305,57 @@ A gate has a property a checklist does not: it fails without anybody choosing to
 
 Write your gate at the bottom of your eval file, under a `## Gates` heading.
 
+### Now build one, so it is not a sentence either
+
+A lab that insists a gate is a mechanism and then asks you for a sentence has handed you a
+wish. If you have two minutes, make one of them real. This is the whole thing:
+
+```bash
+cat > .git/hooks/pre-commit <<'EOF'
+#!/bin/sh
+if git diff --cached -- src/ | grep -qE '^\+.*(DateTime\.Now|\.ToLocalTime\()'; then
+  echo "BLOCKED: DateTime.Now or .ToLocalTime() added under src/ - see AGENTS.md section 5"
+  exit 1
+fi
+EOF
+chmod +x .git/hooks/pre-commit
+```
+
+Test it both ways, because an untested gate is a decoration:
+
+```bash
+echo "// harmless" >> src/Orders.Api/Program.cs
+git add -A && git commit -m "clean"          # passes
+
+printf '\nvar x = DateTime.Now;\n' >> src/Orders.Api/Program.cs
+git add -A && git commit -m "the defect"     # BLOCKED, and stays uncommitted
+```
+
+Six lines, and the defect this lab is built around cannot enter the repository through
+your machine again.
+
+**Know what you have built, though.** A pre-commit hook is fast feedback on one developer's
+laptop. It is local, it is not installed for anybody else, and `git commit --no-verify`
+walks straight past it. The same `grep` as a CI step is the control, because it runs on the
+server where nobody can skip it - and branch protection is what stops the branch merging
+when it fails. Module A made this point about hooks; this is it in six lines.
+
+### The gate and the regression case are the same assertion
+
+Worth noticing before you move on, because it is the thing that makes both of them cheap.
+
+Your regression case from step 4 asserts that every `placedUtc` matches
+`^\d{4}-\d{2}-\d{2}T[\d:.]+Z$`. Your gate greps for the code that breaks it. **Same fact,
+two moments:**
+
+- As an **eval**, it runs after the agent has produced something, and catches the defect
+  coming back.
+- As a **gate**, it runs before anything is committed, and stops it arriving.
+
+That is also why lab 2 made you sort your pass conditions into mechanical and judged. A
+mechanical pass condition can move earlier and become a gate. A judged one cannot - it
+needs a reader, so it stays an eval and runs at the promotion gate.
+
 ---
 
 ## Step 6 - commit
@@ -332,6 +383,7 @@ branch is yours, so discarding is always the right answer.
 - [ ] You have seen your own agent implement the ticket correctly, and can say why it did.
 - [ ] A written regression case, added to your task file.
 - [ ] A stated quality gate, in one sentence, that fails without anybody choosing to care.
+      Better: one you actually built and watched block a commit.
 - [ ] An honest answer to: **would my review have caught this on a busy Friday?**
 
 That last one is not a box to tick. It is the question the whole module is built around,
@@ -381,6 +433,12 @@ real sprint. A review that takes forty minutes will not happen in week three.
 The answer is nearly always the check you found most tedious - which is also the one you
 will quietly stop doing. That is not a coincidence, and it is the best argument there is
 for a gate over a checklist.
+
+Then the follow-up, which is the one that turns the answer into something: **is that check
+mechanical or does it need a reader?** Mechanical ones become a gate and move earlier - the
+six-line hook in step 5, or the same grep as a CI step. Judged ones stay evals and run at
+the promotion gate, where somebody is paying attention anyway. Lab 2 has the four rungs
+between doing it by hand and CI doing it for you.
 
 ---
 
